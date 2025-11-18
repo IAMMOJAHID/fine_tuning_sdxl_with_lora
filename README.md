@@ -1,10 +1,10 @@
 # Fine-tuning SDXL with LoRA
 
-This repo documents how I squeezed a Naruto-style LoRA out of Stable Diffusion XL while staying inside a single 16 GB GPU. Everything you need—from data prep and training to comparison shots—is inside the notebooks and folders in this project.
+This repo documents how I squeezed a Naruto-style LoRA out of Stable Diffusion XL while staying inside a single 16 GB GPU.
 
 ---
 
-## Project at a Glance
+## Project details
 
 - **Goal**: Adapt SDXL to the Naruto universe (characters, outfits, colors, line work) without touching the full 5.2 B parameters.
 - **Hardware budget**: 16 GB VRAM.
@@ -12,6 +12,7 @@ This repo documents how I squeezed a Naruto-style LoRA out of Stable Diffusion X
 - **Entry points**:
   - `sdxl_training_code.ipynb`: end-to-end training loop with logging.
   - `sdxl_inference_code.ipynb`: how the LoRA is loaded/fused and how the evaluation prompts are rendered.
+  - [Fine-tuned model weights drive link](https://drive.google.com/drive/folders/1VGZ7d7yzh7bdFuEMOyZ6Y2Nqe5iCuENf?usp=sharing): download trained weights at multiple checkpoints.
 
 ---
 
