@@ -65,11 +65,9 @@ DreamBooth shines for single subjects with 3–5 photos plus class-image regular
 
 The `images/` folder stores side-by-side grids exported from the inference notebook. Each image uses identical seeds before and after fine-tuning so differences are easy to spot.
 
-| Prompt | Result |
-| --- | --- |
-| Naruto Uzumaki eating ramen | ![Naruto Uzumaki eating ramen — baseline vs LoRA](images/1.png) |
-| Bill Gates in Naruto style | ![Bill Gates in Naruto style — baseline vs LoRA](images/2.png) |
-| A boy with blue eyes in Naruto style | ![Blue-eyed boy in Naruto style — baseline vs LoRA](images/3.png) |
+| ![Naruto Uzumaki eating ramen — baseline vs LoRA](images/1.png) |
+| ![Bill Gates in Naruto style — baseline vs LoRA](images/2.png) |
+| ![Blue-eyed boy in Naruto style — baseline vs LoRA](images/3.png) |
 
 ---
 
