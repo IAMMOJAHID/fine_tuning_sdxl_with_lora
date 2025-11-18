@@ -16,7 +16,7 @@ This repo documents how I squeezed a Naruto-style LoRA out of Stable Diffusion X
 
 ---
 
-## Training Recipe Highlights
+## Training Highlights
 
 - **Data**: Naruto-focused image/caption pairs covering multiple characters and scenes so the model learns a broader style instead of one subject.
 - **Resolution**: 1024×1024 to match SDXL’s native training size and avoid wasting capacity.
