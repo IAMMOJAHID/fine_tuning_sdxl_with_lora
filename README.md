@@ -1,52 +1,75 @@
-## 🎯 Fine-Tuning Overview
+# Fine-tuning SDXL with LoRA
 
-**Objective**: Fine-tune Stable Diffusion XL on the Naruto dataset to learn the distinctive anime art style, characters, and aesthetic while operating within 16GB VRAM constraints.
+This repo documents how I squeezed a Naruto-style LoRA out of Stable Diffusion XL while staying inside a single 16 GB GPU. Everything you need—from data prep and training to comparison shots—is inside the notebooks and folders in this project.
 
-**Strategy**: Use LoRA (Low-Rank Adaptation) to efficiently adapt the base model to the Naruto domain without full retraining, employing multiple memory optimization techniques to handle SDXL's large size.
+---
 
+## Project at a Glance
 
-## 💾 Applied VRAM Optimization Techniques
+- **Goal**: Adapt SDXL to the Naruto universe (characters, outfits, colors, line work) without touching the full 5.2 B parameters.
+- **Hardware budget**: 16 GB VRAM.
+- **Approach**: Train lightweight LoRA adapters, then fuse them back into SDXL for fast inference.
+- **Entry points**:
+  - `sdxl_training_code.ipynb`: end-to-end training loop with logging.
+  - `sdxl_inference.ipynb`: how the LoRA is loaded/fused and how the evaluation prompts are rendered.
 
-### 1. **LoRA (Low-Rank Adaptation)**
-LoRA freezes the original model weights and injects trainable rank-decomposition matrices into attention layers. Instead of updating all parameters, LoRA updates only small adapter matrices. Full fine-tuning would require ~25+ GB VRAM but after LoRA, only ~4-5% of parameters are trainabl. Thus, approximately 50-60% VRAM reduction.
+---
 
+## Training Recipe Highlights
 
-2. **Mixed Precision Training (FP16)**
+- **Data**: Naruto-focused image/caption pairs covering multiple characters and scenes so the model learns a broader style instead of one subject.
+- **Resolution**: 1024×1024 to match SDXL’s native training size and avoid wasting capacity.
+- **Batch size**: 3. With the rest of the optimizations in place, this was the sweet spot for stable gradients.
+- **What gets tuned**: U-Net LoRA ranks plus the text encoder. Training the text encoder makes it latch on to Naruto-specific vocabulary without blowing up VRAM.
 
-Uses 16-bit floating point instead of 32-bit for most operations. Faster computations on modern GPUs. Minimal precision loss, well-tolerated in diffusion models
+---
 
-### 3. **8-bit Adam Optimizer**
+## Memory-Friendly Tricks that Made It Possible
 
-Compresses optimizer states from 32-bit to 8-bit using quantization. 4x memory reduction
+1. **LoRA adapters**  
+   Freeze the base weights and train tiny rank-decomposition matrices inside the attention blocks. Only ~4–5 % of parameters become trainable, cutting VRAM needs roughly in half while keeping checkpoint sizes in the tens of megabytes.
 
+2. **Mixed precision (FP16)**  
+   Halves memory for activations/weights and speeds up math on tensor cores with negligible quality loss for diffusion models.
 
-### 4. **Gradient Checkpointing**
-Trade computation for memory by recomputing activations during backward pass instead of storing them. A significant saving in activation memory.
+3. **8-bit Adam**  
+   Optimizer states drop from 32-bit to 8-bit via quantization, giving ~4× memory savings with no noticeable training instability.
 
-### 5. **Memory-Efficient Attention (xformers)**
-Optimized attention implementation that reduces memory footprint of self-attention layers using xformers. This increase the compustion speed and helpful in high resolution image (1024x1024).
+4. **Gradient checkpointing**  
+   Recompute activations on the backward pass instead of storing them. Adds compute, saves memory—totally worth it here.
 
+5. **xFormers attention**  
+   Memory-efficient attention kernels keep high-resolution generations (1024²) feasible and give a modest throughput bump.
 
-## 🎪 Motivation Behind Technique Choices
+### Why Not DreamBooth?
 
-### **Why LoRA over Full Fine-tuning?**
-Train 10-50M parameters vs 5.2B parameters. Preserves base model capabilities. Small checkpoint files (~10-100MB vs ~6-12GB)
+DreamBooth shines for single subjects with 3–5 photos plus class-image regularization. Our dataset spans dozens of characters and compositions, so a style-centric LoRA is a better match and avoids the overhead of generating class images.
 
-### **Why Resolution 1024?**
+---
 
-SDXL is trained natively at 1024x1024. Lower resolutions would:
-- Waste model capacity
-- Produce blurry results
-- Require the model to "learn downscaling"
+## How to Reproduce
 
-### **Why Batch Size 3?**
-Large enough for stable gradients. Fits within 16GB with other optimizations. Good trade-off between speed and quality
+1. **Training**  
+   Open `sdxl_training_code.ipynb`, point it to your dataset on disk or in the cloud, and step through the cells. The notebook already includes logging hooks, optimizer config, and checkpoint saving to `checkpoints/`.
 
-### **Why Train Text Encoder?**
-Make it learn Naruto-specific terms and concepts. Thus, Better understanding of anime-style descriptions. Text encoder is much smaller than U-Net and thus it consumes very less memory.
+2. **Inference / Comparison**  
+   Use `sdxl_inference.ipynb`. It:
+   - Loads the base SDXL pipeline.
+   - Runs three evaluation prompts without LoRA for a baseline.
+   - Loads `checkpoints/pytorch_lora_weights_450.safetensors`, activates the adapter, and fuses it for fast inference.
+   - Regenerates the same prompts post-training so you can compare before/after.
 
+---
 
-### **Why DreamBooth is Not Suitable:**
-1.	DreamBooth is for subject-driven generation - it's designed to teach a model about a specific subject (like a person, pet, or object) using just 3-5 images of that subject.
-2.	Given dataset has diverse content - the Naruto dataset contains many different characters, scenes, and concepts, each with their own captions.
-3.	DreamBooth uses class images - it requires generating "class images" to preserve general knowledge, which doesn't align with your multi-concept dataset.
+## Sample Outputs
+
+The `images/` folder stores side-by-side grids exported from the inference notebook. Each image uses identical seeds before and after fine-tuning so differences are easy to spot.
+
+| Prompt | Result |
+| --- | --- |
+| Naruto Uzumaki eating ramen | ![Naruto Uzumaki eating ramen — baseline vs LoRA](images/1.png) |
+| Bill Gates in Naruto style | ![Bill Gates in Naruto style — baseline vs LoRA](images/2.png) |
+| A boy with blue eyes in Naruto style | ![Blue-eyed boy in Naruto style — baseline vs LoRA](images/3.png) |
+
+---
+
