@@ -69,5 +69,11 @@ The `images/` folder stores side-by-side grids exported from the inference noteb
 | ![Bill Gates in Naruto style — baseline vs LoRA](images/2.png) |
 | ![Blue-eyed boy in Naruto style — baseline vs LoRA](images/3.png) |
 
+After removing the word 'Naruto' from the prompt:
+
+| ![Naruto Uzumaki eating ramen — baseline vs LoRA](images/4.png) |
+| ![Bill Gates in Naruto style — baseline vs LoRA](images/5.png) |
+| ![Blue-eyed boy in Naruto style — baseline vs LoRA](images/6.png) |
+
 ---
 
