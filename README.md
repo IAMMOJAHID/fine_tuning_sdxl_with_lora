@@ -11,7 +11,7 @@ This repo documents how I squeezed a Naruto-style LoRA out of Stable Diffusion X
 - **Approach**: Train lightweight LoRA adapters, then fuse them back into SDXL for fast inference.
 - **Entry points**:
   - `sdxl_training_code.ipynb`: end-to-end training loop with logging.
-  - `sdxl_inference.ipynb`: how the LoRA is loaded/fused and how the evaluation prompts are rendered.
+  - `sdxl_inference_code.ipynb`: how the LoRA is loaded/fused and how the evaluation prompts are rendered.
 
 ---
 
@@ -53,10 +53,10 @@ DreamBooth shines for single subjects with 3–5 photos plus class-image regular
    Open `sdxl_training_code.ipynb`, point it to your dataset on disk or in the cloud, and step through the cells. The notebook already includes logging hooks, optimizer config, and checkpoint saving to `checkpoints/`.
 
 2. **Inference / Comparison**  
-   Use `sdxl_inference.ipynb`. It:
+   Use `sdxl_inference_code.ipynb`. It:
    - Loads the base SDXL pipeline.
    - Runs three evaluation prompts without LoRA for a baseline.
-   - Loads `checkpoints/pytorch_lora_weights_450.safetensors`, activates the adapter, and fuses it for fast inference.
+   - Loads `checkpoints/pytorch_lora_weights.safetensors`, activates the adapter, and fuses it for fast inference.
    - Regenerates the same prompts post-training so you can compare before/after.
 
 ---

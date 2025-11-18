@@ -1,0 +1,165 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py:529: UserWarning: `log_with=wandb` was passed but no supported trackers are currently installed.
+  warnings.warn(f"`log_with={log_with}` was passed but no supported trackers are currently installed.")
+11/18/2025 11:58:38 - INFO - __main__ - Distributed environment: NO
+Num processes: 1
+Process index: 0
+Local process index: 0
+Device: cuda
+
+Mixed precision type: fp16
+
+You are using a model of type clip_text_model to instantiate a model of type . This is not supported for all configurations of models and can yield errors.
+You are using a model of type clip_text_model to instantiate a model of type . This is not supported for all configurations of models and can yield errors.
+{'clip_sample_range', 'variance_type', 'rescale_betas_zero_snr', 'thresholding', 'dynamic_thresholding_ratio'} was not found in config. Values will be initialized to default values.
+{'use_quant_conv', 'latents_mean', 'use_post_quant_conv', 'mid_block_add_attention', 'latents_std', 'shift_factor'} was not found in config. Values will be initialized to default values.
+All model checkpoint weights were used when initializing AutoencoderKL.
+
+All the weights of AutoencoderKL were initialized from the model checkpoint at madebyollin/sdxl-vae-fp16-fix.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use AutoencoderKL for predictions without further training.
+{'reverse_transformer_layers_per_block', 'dropout', 'attention_type'} was not found in config. Values will be initialized to default values.
+All model checkpoint weights were used when initializing UNet2DConditionModel.
+
+All the weights of UNet2DConditionModel were initialized from the model checkpoint at stabilityai/stable-diffusion-xl-base-1.0.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use UNet2DConditionModel for predictions without further training.
+Repo card metadata block was not found. Setting CardData to empty.
+11/18/2025 11:59:47 - WARNING - huggingface_hub.repocard - Repo card metadata block was not found. Setting CardData to empty.
+11/18/2025 11:59:51 - INFO - __main__ - ***** Running training *****
+11/18/2025 11:59:51 - INFO - __main__ -   Num examples = 1221
+11/18/2025 11:59:51 - INFO - __main__ -   Num Epochs = 3
+11/18/2025 11:59:51 - INFO - __main__ -   Instantaneous batch size per device = 3
+11/18/2025 11:59:51 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 3
+11/18/2025 11:59:51 - INFO - __main__ -   Gradient Accumulation steps = 1
+11/18/2025 11:59:51 - INFO - __main__ -   Total optimization steps = 1000
+Steps:   5% 50/1000 [06:04<1:54:35,  7.24s/it, lr=0.0001, step_loss=0.0345]11/18/2025 12:05:55 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-50
+Model weights saved in /content/model/checkpoint-50/pytorch_lora_weights.safetensors
+11/18/2025 12:05:57 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-50/optimizer.bin
+11/18/2025 12:05:57 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-50/scheduler.bin
+11/18/2025 12:05:57 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-50/sampler.bin
+11/18/2025 12:05:57 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-50/scaler.pt
+11/18/2025 12:05:57 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-50/random_states_0.pkl
+11/18/2025 12:05:57 - INFO - __main__ - Saved state to /content/model/checkpoint-50
+Steps:  10% 100/1000 [12:08<1:49:09,  7.28s/it, lr=0.0001, step_loss=0.0988]11/18/2025 12:11:59 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-100
+Model weights saved in /content/model/checkpoint-100/pytorch_lora_weights.safetensors
+11/18/2025 12:12:00 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-100/optimizer.bin
+11/18/2025 12:12:00 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-100/scheduler.bin
+11/18/2025 12:12:00 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-100/sampler.bin
+11/18/2025 12:12:00 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-100/scaler.pt
+11/18/2025 12:12:00 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-100/random_states_0.pkl
+11/18/2025 12:12:00 - INFO - __main__ - Saved state to /content/model/checkpoint-100
+Steps:  15% 150/1000 [18:11<1:42:54,  7.26s/it, lr=0.0001, step_loss=0.105]11/18/2025 12:18:02 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-150
+Model weights saved in /content/model/checkpoint-150/pytorch_lora_weights.safetensors
+11/18/2025 12:18:04 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-150/optimizer.bin
+11/18/2025 12:18:04 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-150/scheduler.bin
+11/18/2025 12:18:04 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-150/sampler.bin
+11/18/2025 12:18:04 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-150/scaler.pt
+11/18/2025 12:18:04 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-150/random_states_0.pkl
+11/18/2025 12:18:04 - INFO - __main__ - Saved state to /content/model/checkpoint-150
+Steps:  20% 200/1000 [24:14<1:36:41,  7.25s/it, lr=0.0001, step_loss=0.143]11/18/2025 12:24:05 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-200
+Model weights saved in /content/model/checkpoint-200/pytorch_lora_weights.safetensors
+11/18/2025 12:24:06 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-200/optimizer.bin
+11/18/2025 12:24:06 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-200/scheduler.bin
+11/18/2025 12:24:06 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-200/sampler.bin
+11/18/2025 12:24:06 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-200/scaler.pt
+11/18/2025 12:24:06 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-200/random_states_0.pkl
+11/18/2025 12:24:06 - INFO - __main__ - Saved state to /content/model/checkpoint-200
+Steps:  25% 250/1000 [30:17<1:30:34,  7.25s/it, lr=0.0001, step_loss=0.129]11/18/2025 12:30:08 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-250
+Model weights saved in /content/model/checkpoint-250/pytorch_lora_weights.safetensors
+11/18/2025 12:30:10 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-250/optimizer.bin
+11/18/2025 12:30:10 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-250/scheduler.bin
+11/18/2025 12:30:10 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-250/sampler.bin
+11/18/2025 12:30:10 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-250/scaler.pt
+11/18/2025 12:30:10 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-250/random_states_0.pkl
+11/18/2025 12:30:10 - INFO - __main__ - Saved state to /content/model/checkpoint-250
+Steps:  30% 300/1000 [36:19<1:23:37,  7.17s/it, lr=0.0001, step_loss=0.0342]11/18/2025 12:36:11 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-300
+Model weights saved in /content/model/checkpoint-300/pytorch_lora_weights.safetensors
+11/18/2025 12:36:12 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-300/optimizer.bin
+11/18/2025 12:36:12 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-300/scheduler.bin
+11/18/2025 12:36:12 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-300/sampler.bin
+11/18/2025 12:36:12 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-300/scaler.pt
+11/18/2025 12:36:12 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-300/random_states_0.pkl
+11/18/2025 12:36:12 - INFO - __main__ - Saved state to /content/model/checkpoint-300
+Steps:  35% 350/1000 [42:22<1:18:26,  7.24s/it, lr=0.0001, step_loss=0.132]11/18/2025 12:42:13 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-350
+Model weights saved in /content/model/checkpoint-350/pytorch_lora_weights.safetensors
+11/18/2025 12:42:15 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-350/optimizer.bin
+11/18/2025 12:42:15 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-350/scheduler.bin
+11/18/2025 12:42:15 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-350/sampler.bin
+11/18/2025 12:42:15 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-350/scaler.pt
+11/18/2025 12:42:15 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-350/random_states_0.pkl
+11/18/2025 12:42:15 - INFO - __main__ - Saved state to /content/model/checkpoint-350
+Steps:  40% 400/1000 [48:24<1:12:35,  7.26s/it, lr=0.0001, step_loss=0.0976]11/18/2025 12:48:15 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-400
+Model weights saved in /content/model/checkpoint-400/pytorch_lora_weights.safetensors
+11/18/2025 12:48:17 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-400/optimizer.bin
+11/18/2025 12:48:17 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-400/scheduler.bin
+11/18/2025 12:48:17 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-400/sampler.bin
+11/18/2025 12:48:17 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-400/scaler.pt
+11/18/2025 12:48:17 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-400/random_states_0.pkl
+11/18/2025 12:48:17 - INFO - __main__ - Saved state to /content/model/checkpoint-400
+Steps:  41% 407/1000 [49:16<1:10:45,  7.16s/it, lr=0.0001, step_loss=0.154]
+model_index.json: 100% 609/609 [00:00<00:00, 3.89MB/s]
+
+Fetching 11 files:   0% 0/11 [00:00<?, ?it/s][A
+
+vae_1_0/diffusion_pytorch_model.safetens(…):   0% 0.00/335M [00:00<?, ?B/s][A[A
+
+vae_1_0/diffusion_pytorch_model.safetens(…):  20% 67.0M/335M [00:02<00:08, 33.0MB/s][A[A
+
+vae_1_0/diffusion_pytorch_model.safetens(…):  40% 134M/335M [00:05<00:08, 25.0MB/s] [A[A
+
+vae_1_0/diffusion_pytorch_model.safetens(…):  60% 201M/335M [00:05<00:03, 41.1MB/s][A[A
+
+vae_1_0/diffusion_pytorch_model.safetens(…):  80% 268M/335M [00:06<00:01, 49.0MB/s][A[A
+
+vae_1_0/diffusion_pytorch_model.safetens(…): 100% 335M/335M [00:08<00:00, 37.7MB/s]
+
+Fetching 11 files: 100% 11/11 [00:09<00:00,  1.15it/s]
+{'feature_extractor', 'image_encoder'} was not found in config. Values will be initialized to default values.
+
+Loading pipeline components...:   0% 0/7 [00:00<?, ?it/s][ALoaded tokenizer as CLIPTokenizer from `tokenizer` subfolder of stabilityai/stable-diffusion-xl-base-1.0.
+Loaded tokenizer_2 as CLIPTokenizer from `tokenizer_2` subfolder of stabilityai/stable-diffusion-xl-base-1.0.
+
+Loading pipeline components...:  43% 3/7 [00:00<00:00, 22.80it/s][A{'final_sigmas_type', 'sigma_max', 'timestep_type', 'sigma_min', 'use_exponential_sigmas', 'use_beta_sigmas', 'rescale_betas_zero_snr'} was not found in config. Values will be initialized to default values.
+Loaded scheduler as EulerDiscreteScheduler from `scheduler` subfolder of stabilityai/stable-diffusion-xl-base-1.0.
+Loading pipeline components...: 100% 7/7 [00:00<00:00, 43.15it/s]
+11/18/2025 12:49:17 - INFO - __main__ - Running validation... 
+ Generating 4 images with prompt: cute dragon creature.
+/usr/local/lib/python3.10/dist-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+Steps:  45% 450/1000 [58:16<1:06:15,  7.23s/it, lr=0.0001, step_loss=0.109]11/18/2025 12:58:07 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-450
+Model weights saved in /content/model/checkpoint-450/pytorch_lora_weights.safetensors
+11/18/2025 12:58:09 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-450/optimizer.bin
+11/18/2025 12:58:09 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-450/scheduler.bin
+11/18/2025 12:58:09 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-450/sampler.bin
+11/18/2025 12:58:09 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-450/scaler.pt
+11/18/2025 12:58:09 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-450/random_states_0.pkl
+11/18/2025 12:58:09 - INFO - __main__ - Saved state to /content/model/checkpoint-450
+Steps:  50% 500/1000 [1:04:20<1:00:19,  7.24s/it, lr=0.0001, step_loss=0.144]11/18/2025 13:04:11 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-500
+Model weights saved in /content/model/checkpoint-500/pytorch_lora_weights.safetensors
+11/18/2025 13:04:12 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-500/optimizer.bin
+11/18/2025 13:04:12 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-500/scheduler.bin
+11/18/2025 13:04:12 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-500/sampler.bin
+11/18/2025 13:04:12 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-500/scaler.pt
+11/18/2025 13:04:12 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-500/random_states_0.pkl
+11/18/2025 13:04:12 - INFO - __main__ - Saved state to /content/model/checkpoint-500
+Steps:  55% 550/1000 [1:10:23<54:38,  7.29s/it, lr=0.0001, step_loss=0.024]11/18/2025 13:10:14 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-550
+Model weights saved in /content/model/checkpoint-550/pytorch_lora_weights.safetensors
+11/18/2025 13:10:16 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-550/optimizer.bin
+11/18/2025 13:10:16 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-550/scheduler.bin
+11/18/2025 13:10:16 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-550/sampler.bin
+11/18/2025 13:10:16 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-550/scaler.pt
+11/18/2025 13:10:16 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-550/random_states_0.pkl
+11/18/2025 13:10:16 - INFO - __main__ - Saved state to /content/model/checkpoint-550
+Steps:  60% 600/1000 [1:16:26<48:20,  7.25s/it, lr=0.0001, step_loss=0.067]11/18/2025 13:16:17 - INFO - accelerate.accelerator - Saving current state to /content/model/checkpoint-600
+Model weights saved in /content/model/checkpoint-600/pytorch_lora_weights.safetensors
+11/18/2025 13:16:18 - INFO - accelerate.checkpointing - Optimizer state saved in /content/model/checkpoint-600/optimizer.bin
+11/18/2025 13:16:18 - INFO - accelerate.checkpointing - Scheduler state saved in /content/model/checkpoint-600/scheduler.bin
+11/18/2025 13:16:18 - INFO - accelerate.checkpointing - Sampler state for dataloader 0 saved in /content/model/checkpoint-600/sampler.bin
+11/18/2025 13:16:18 - INFO - accelerate.checkpointing - Gradient scaler state saved in /content/model/checkpoint-600/scaler.pt
+11/18/2025 13:16:18 - INFO - accelerate.checkpointing - Random states saved in /content/model/checkpoint-600/random_states_0.pkl
+11/18/2025 13:16:18 - INFO - __main__ - Saved state to /content/model/checkpoint-600
+Steps:  64% 636/1000 [1:20:48<43:56,  7.24s/it, lr=0.0001, step_loss=0.0358]
